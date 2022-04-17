@@ -36,7 +36,13 @@ public class CvController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Cv> findById(@PathVariable UUID id) {
-        return new ResponseEntity<>(cvService.findById(id), HttpStatus.OK);
+        Optional<Cv> cv;
+        cv = Optional.ofNullable(cvService.findById(id));
+        if (cv.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(cv.get(), HttpStatus.OK);
+        //return new ResponseEntity<>(cvService.findById(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

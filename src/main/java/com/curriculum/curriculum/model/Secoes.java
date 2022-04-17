@@ -1,5 +1,6 @@
 package com.curriculum.curriculum.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -21,10 +22,6 @@ public class Secoes {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     private UUID id;
-
-    //@ManyToOne
-    //@JoinColumn(name="cv_id_secoes")
-    //private Cv cv;
 
     @Column(name = "titulo", length = 255, nullable = false)
     private String titulo;

@@ -26,23 +26,17 @@ public class Cv {
     private UUID id;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "cv_experiencia", joinColumns = {
-            @JoinColumn(name = "cv_id", referencedColumnName = "id") }, inverseJoinColumns = {
-            @JoinColumn(name = "experiencia_id", referencedColumnName = "id") })
+    @JoinTable(name = "cv_experiencia", joinColumns = @JoinColumn(name = "cv_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "experiencia_id", referencedColumnName = "id"))
     @Builder.Default
     private List<Experiencia> experiencia = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "cv_educacao", joinColumns = {
-            @JoinColumn(name = "cv_id", referencedColumnName = "id") }, inverseJoinColumns = {
-            @JoinColumn(name = "educacao_id", referencedColumnName = "id") })
+    @JoinTable(name = "cv_educacao", joinColumns = @JoinColumn(name = "cv_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "educacao_id", referencedColumnName = "id"))
     @Builder.Default
     private List<Educacao> educacao = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "cv_secoes", joinColumns = {
-            @JoinColumn(name = "cv_id", referencedColumnName = "id") }, inverseJoinColumns = {
-            @JoinColumn(name = "secoes_id", referencedColumnName = "id") })
+    @JoinTable(name = "cv_secoes", joinColumns = @JoinColumn(name = "cv_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "secoes_id", referencedColumnName = "id"))
     @Builder.Default
     private List<Secoes> secoes = new ArrayList<>();
 
@@ -161,5 +155,29 @@ public class Cv {
 
     public void setSecoes(List<Secoes> secoes) {
         this.secoes = secoes;
+    }
+
+    public void addExperiencia(Experiencia experiencia) {
+        this.experiencia.add(experiencia);
+    }
+
+    public void removeExperiencia(Experiencia experiencia) {
+        this.experiencia.remove(experiencia);
+    }
+
+    public void addEducacao(Educacao educacao) {
+        this.educacao.add(educacao);
+    }
+
+    public void removeEducacao(Educacao educacao) {
+        this.educacao.remove(educacao);
+    }
+
+    public void addSecoes(Secoes secoes) {
+        this.secoes.add(secoes);
+    }
+
+    public void removeSecoes(Secoes secoes) {
+        this.secoes.remove(secoes);
     }
 }

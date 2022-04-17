@@ -24,13 +24,6 @@ public class Experiencia {
     @Column(name = "id", nullable = false)
     private UUID id;
 
-    //@ManyToOne
-    //@JoinColumn(name="cv_id_experiencia")
-    //private Cv cv;
-
-    @Column(name = "nome", length = 255, nullable = false, unique = true)
-    private String nome;
-
     @Column(name = "cargo", length = 500, nullable = false)
     private String cargo;
 
@@ -50,15 +43,6 @@ public class Experiencia {
 
     public void setId(UUID id) {
         this.id = id;
-    }
-
-    @NonNull
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(@NonNull String nome) {
-        this.nome = nome;
     }
 
     @NonNull

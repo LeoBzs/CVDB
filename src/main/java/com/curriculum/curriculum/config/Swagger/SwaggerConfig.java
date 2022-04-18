@@ -1,4 +1,4 @@
-package com.curriculum.curriculum.config;
+package com.curriculum.curriculum.config.Swagger;
 
 import com.curriculum.curriculum.model.Cv;
 import org.springframework.context.annotation.Bean;

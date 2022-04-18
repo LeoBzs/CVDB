@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import javax.validation.Valid;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -24,7 +25,7 @@ public class CvController {
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public ResponseEntity<Cv> saveUsuario(@RequestBody Cv cv, BindingResult bindingResult) {
+    public ResponseEntity<Cv> saveUsuario(@RequestBody @Valid Cv cv, BindingResult bindingResult) {
 
         Cv saveCv = cvService.saveCv(cv);
 
@@ -42,17 +43,26 @@ public class CvController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(cv.get(), HttpStatus.OK);
-        //return new ResponseEntity<>(cvService.findById(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Cv> deleteById(@PathVariable UUID id) {
+        Optional<Cv> cv;
+        cv = Optional.ofNullable(cvService.findById(id));
+        if (cv.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         cvService.deleteCv(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Optional<Cv>> changeById(@RequestBody Cv newCv, @PathVariable UUID id) {
+    public ResponseEntity<Optional<Cv>> changeById(@RequestBody @Valid Cv newCv, @PathVariable UUID id) {
+        Optional<Cv> cv;
+        cv = Optional.ofNullable(cvService.findById(id));
+        if (cv.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         return new ResponseEntity<>(cvService.changeCv(newCv, id), HttpStatus.OK);
     }
 

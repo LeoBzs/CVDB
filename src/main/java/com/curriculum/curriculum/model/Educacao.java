@@ -36,46 +36,4 @@ public class Educacao {
     @Column(name = "data_termino")
     private LocalDate data_termino;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    @NonNull
-    public String getNome_instituicao() {
-        return nome_instituicao;
-    }
-
-    public void setNome_instituicao(@NonNull String nome_instituicao) {
-        this.nome_instituicao = nome_instituicao;
-    }
-
-    @NonNull
-    public String getCurso() {
-        return curso;
-    }
-
-    public void setCurso(@NonNull String curso) {
-        this.curso = curso;
-    }
-
-    @NonNull
-    public LocalDate getData_inicio() {
-        return data_inicio;
-    }
-
-    public void setData_inicio(@NonNull LocalDate data_inicio) {
-        this.data_inicio = data_inicio;
-    }
-
-    public LocalDate getData_termino() {
-        return data_termino;
-    }
-
-    public void setData_termino(LocalDate data_termino) {
-        this.data_termino = data_termino;
-    }
 }

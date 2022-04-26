@@ -49,8 +49,19 @@ public class CvServiceImpl implements CvService{
     public Optional<Cv> changeCv(Cv newCv, UUID id) throws DataAccessException {
         return cvRepository.findById(id)
                 .map(cv -> {
+
                     cv.setNome(newCv.getNome());
-                    return cvRepository.save(newCv);
+                    cv.setCargo(newCv.getCargo());
+                    cv.setConhecimentos(newCv.getConhecimentos());
+                    cv.setEducacao(newCv.getEducacao());
+                    cv.setEmail(newCv.getEmail());
+                    cv.setExperiencia(newCv.getExperiencia());
+                    cv.setIdioma(newCv.getIdioma());
+                    cv.setSecoes(newCv.getSecoes());
+                    cv.setStatus(newCv.getStatus());
+                    cv.setSumario(newCv.getSumario());
+
+                    return cvRepository.save(cv);
                 });
     }
 }

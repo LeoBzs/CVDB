@@ -5,10 +5,13 @@ import com.curriculum.curriculum.service.CvServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.ReflectionUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
+import java.lang.reflect.Field;
+import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -71,4 +74,27 @@ public class CvController {
         return new ResponseEntity<>(cvService.findAll(), HttpStatus.OK);
     }
 
+    @PatchMapping("/{id}")
+    ResponseEntity<Cv> patchClaim(@RequestBody @Valid Map<String, Object> fields, @PathVariable UUID id) {
+
+        if (fields == null || fields.isEmpty() || !fields.get("id").equals(id)){
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST); //
+        }
+
+        Cv cv = cvService.findById(id);
+
+        if(cv == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        fields.remove("id");
+
+        fields.forEach((k, v) -> {
+            Field field = ReflectionUtils.findField(Cv.class, k);
+            field.setAccessible(true);
+            ReflectionUtils.setField(field, cv, v);
+        });
+
+        cvService.saveCv(cv);
+        return new ResponseEntity<>(cv, HttpStatus.OK);
+    }
 }

@@ -29,29 +29,4 @@ public class Secoes {
     @Column(name = "campo_texto", length = 2000, nullable = false)
     private String campo_texto;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    @NonNull
-    public String getTitulo() {
-        return titulo;
-    }
-
-    public void setTitulo(@NonNull String titulo) {
-        this.titulo = titulo;
-    }
-
-    @NonNull
-    public String getCampo_texto() {
-        return campo_texto;
-    }
-
-    public void setCampo_texto(@NonNull String campo_texto) {
-        this.campo_texto = campo_texto;
-    }
 }

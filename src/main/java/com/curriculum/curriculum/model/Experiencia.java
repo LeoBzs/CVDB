@@ -36,47 +36,4 @@ public class Experiencia {
     @Column(name = "atividades", length = 2000, nullable = false)
     private String atividades;
 
-
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    @NonNull
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(@NonNull String cargo) {
-        this.cargo = cargo;
-    }
-
-    @NonNull
-    public LocalDate getData_inicio() {
-        return data_inicio;
-    }
-
-    public void setData_inicio(@NonNull LocalDate data_inicio) {
-        this.data_inicio = data_inicio;
-    }
-
-    public LocalDate getData_termino() {
-        return data_termino;
-    }
-
-    public void setData_termino(LocalDate data_termino) {
-        this.data_termino = data_termino;
-    }
-
-    @NonNull
-    public String getAtividades() {
-        return atividades;
-    }
-
-    public void setAtividades(@NonNull String atividades) {
-        this.atividades = atividades;
-    }
 }
